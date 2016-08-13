@@ -1,3 +1,4 @@
+// wordpressxml provides WordPress XML parser with metadata
 package wordpressxml
 
 import (
@@ -20,6 +21,7 @@ func NewWordpressXml() WpXml {
 	return xml
 }
 
+// ReadXml reads a WordPress XML file from the provided path.
 func (wpxml *WpXml) ReadXml(filepath string) error {
 	bytes, err := ioutil.ReadFile(filepath)
 	if err != nil {
@@ -81,6 +83,8 @@ func (wpxml *WpXml) AuthorsToIndex() map[string]int {
 	return a2i
 }
 
+// AuthorForLogin returns the Author object for a given AuthorLogin
+// or username.
 func (wpxml *WpXml) AuthorForLogin(authorLogin string) (Author, error) {
 	a2i := wpxml.CreatorToIndex
 	if index, ok := a2i[authorLogin]; ok {
@@ -90,6 +94,8 @@ func (wpxml *WpXml) AuthorForLogin(authorLogin string) (Author, error) {
 	return Author{}, errors.New("Author Not Found")
 }
 
+// ArticlesMetaTable generates the data to be written out
+// as a CSV.
 func (wpxml *WpXml) ArticlesMetaTable() [][]string {
 	articles := [][]string{}
 	header := []string{"Index", "Date", "Login", "Author", "Title"}
@@ -107,7 +113,8 @@ func (wpxml *WpXml) ArticlesMetaTable() [][]string {
 	return articles
 }
 
-func (wpxml *WpXml) WriteCsv(filepath string) error {
+// Writes articles metadata as a CSV file.
+func (wpxml *WpXml) WriteMetaCsv(filepath string) error {
 	file, err := os.Create(filepath)
 	if err != nil {
 		return err
@@ -132,16 +139,18 @@ type Channel struct {
 	Items   []Item   `xml:"item"`
 }
 
+// Author is the WordPress XML author object.
 type Author struct {
-	AuthorId          int    `xml:"author_id"`
-	AuthorLogin       string `xml:"author_login"`
-	AuthorEmail       string `xml:"author_email"`
-	AuthorDisplayName string `xml:"author_display_name"`
-	AuthorFirstName   string `xml:"author_first_name"`
-	AuthorLastName    string `xml:"author_last_name"`
-	AuthorArticles    []ItemThin
+	AuthorId          int        `xml:"author_id"`
+	AuthorLogin       string     `xml:"author_login"`
+	AuthorEmail       string     `xml:"author_email"`
+	AuthorDisplayName string     `xml:"author_display_name"`
+	AuthorFirstName   string     `xml:"author_first_name"`
+	AuthorLastName    string     `xml:"author_last_name"`
+	AuthorArticles    []ItemThin `xml:"-"`
 }
 
+// Item is a WordPress XML item which can be a post, page or other object.
 type Item struct {
 	Title       string   `xml:"title"`
 	Creator     string   `xml:"creator"`
@@ -158,6 +167,8 @@ type Item struct {
 	Status      string `xml:"status"`
 }
 
+// ItemThin is a WordPress XML item that is used as additional
+// metadata in the Author object.
 type ItemThin struct {
 	Title string
 	Index int

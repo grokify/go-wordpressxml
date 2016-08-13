@@ -33,9 +33,13 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	wp.WriteCsv("articles.csv.txt")
+	wp.WriteMetaCsv("articles.csv.txt")
 }
 ```
+
+## Notes
+
+Since WordPress uses `content:encoded` and `excerpt:encoded`, Go's XML built-in parser treats both of these as the field `encoded` in different namespaces. This parser retrieves these fields as an array of `encoded` and then moves the data into the `Content` property.
 
 ## Contributing
 
