@@ -33,7 +33,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	wp.WriteMetaCsv("articles.csv.txt")
+	wp.WriteMetaCsv("articles.csv")
 }
 ```
 

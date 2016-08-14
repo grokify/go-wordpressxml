@@ -98,7 +98,7 @@ func (wpxml *WpXml) AuthorForLogin(authorLogin string) (Author, error) {
 // as a CSV.
 func (wpxml *WpXml) ArticlesMetaTable() [][]string {
 	articles := [][]string{}
-	header := []string{"Index", "Date", "Login", "Author", "Title"}
+	header := []string{"Index", "Date", "Login", "Author", "Title", "Link"}
 	articles = append(articles, header)
 	a2i := wpxml.AuthorsToIndex()
 	for i, item := range wpxml.Channel.Items {
@@ -106,7 +106,7 @@ func (wpxml *WpXml) ArticlesMetaTable() [][]string {
 		if err != nil {
 			panic(err)
 		}
-		article := []string{strconv.Itoa(i), item.PubDate, item.Creator, author.AuthorDisplayName, item.Title}
+		article := []string{strconv.Itoa(i), item.PubDate, item.Creator, author.AuthorDisplayName, item.Title, item.Link}
 		articles = append(articles, article)
 	}
 	wpxml.CreatorToIndex = a2i
@@ -121,10 +121,8 @@ func (wpxml *WpXml) WriteMetaCsv(filepath string) error {
 	}
 	defer file.Close()
 
-	articles := wpxml.ArticlesMetaTable()
-
 	w := csv.NewWriter(file)
-	w.WriteAll(articles)
+	w.WriteAll(wpxml.ArticlesMetaTable())
 	return w.Error()
 }
 
