@@ -8,6 +8,9 @@ import (
 	"io/ioutil"
 	"os"
 	"strconv"
+	"time"
+
+	"github.com/grokify/gotilla/time/timeutil"
 )
 
 type WpXml struct {
@@ -45,15 +48,27 @@ func (wpxml *WpXml) inflate() error {
 				creatorMap[item.Creator] = 1
 			}
 		}
-		if len(item.Encoded) > 0 && len(item.Encoded[0]) > 0 {
-			content := item.Encoded[0]
-			wpxml.Channel.Items[i].Content = content
-			item.Encoded[0] = ""
-		}
+
+		item = wpxml.inflateItem(item)
+		wpxml.Channel.Items[i] = item
 	}
 	wpxml.CreatorCounts = creatorMap
 	wpxml.inflateAuthors()
 	return nil
+}
+
+func (wpxml *WpXml) inflateItem(item Item) Item {
+	if len(item.Encoded) > 0 && len(item.Encoded[0]) > 0 {
+		item.Content = item.Encoded[0]
+		item.Encoded[0] = ""
+	}
+	if len(item.PubDate) > 0 {
+		dtRfc3339, err := timeutil.FromTo(item.PubDate, time.RFC1123Z, time.RFC3339)
+		if err == nil {
+			item.PubDateRfc3339 = dtRfc3339
+		}
+	}
+	return item
 }
 
 func (wpxml *WpXml) inflateAuthors() error {
@@ -150,19 +165,21 @@ type Author struct {
 
 // Item is a WordPress XML item which can be a post, page or other object.
 type Item struct {
-	Title       string   `xml:"title"`
-	Creator     string   `xml:"creator"`
-	Encoded     []string `xml:"encoded"`
-	Content     string
-	IsSticky    int    `xml:"is_sticky"`
-	Link        string `xml:"link"`
-	PubDate     string `xml:"pubDate"`
-	Description string `xml:"description"`
-	PostDate    string `xml:"post_date"`
-	PostDateGmt string `xml:"post_date_gmt"`
-	PostName    string `xml:"post_name"`
-	PostType    string `xml:"post_type"`
-	Status      string `xml:"status"`
+	Title          string     `xml:"title"`
+	Creator        string     `xml:"creator"`
+	Encoded        []string   `xml:"encoded"`
+	IsSticky       int        `xml:"is_sticky"`
+	Link           string     `xml:"link"`
+	PubDate        string     `xml:"pubDate"`
+	Description    string     `xml:"description"`
+	PostDate       string     `xml:"post_date"`
+	PostDateGmt    string     `xml:"post_date_gmt"`
+	PostName       string     `xml:"post_name"`
+	PostType       string     `xml:"post_type"`
+	Status         string     `xml:"status"`
+	Categories     []Category `xml:"category"`
+	Content        string
+	PubDateRfc3339 string
 }
 
 // ItemThin is a WordPress XML item that is used as additional
@@ -170,4 +187,10 @@ type Item struct {
 type ItemThin struct {
 	Title string
 	Index int
+}
+
+type Category struct {
+	Domain      string `xml:"domain,attr"`
+	DisplayName string `xml:",chardata"`
+	UrlSlug     string `xml:"nicename,attr"`
 }
