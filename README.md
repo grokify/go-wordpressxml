@@ -1,6 +1,8 @@
 WordPress XML Parser
 ====================
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/bc2a0f5a10f6459f8fba86f58f368553)](https://www.codacy.com/app/grokify/wordpress-xml-go?utm_source=github.com&utm_medium=referral&utm_content=grokify/wordpress-xml-go&utm_campaign=badger)
+
 [![Docs][docs-godoc-svg]][docs-godoc-link]
 [![License][license-svg]][license-link]
 
