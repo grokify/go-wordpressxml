@@ -1,6 +1,7 @@
 WordPress XML Parser
 ====================
 
+[![Go Report Card][goreport-svg]][goreport-link]
 [![Docs][docs-godoc-svg]][docs-godoc-link]
 [![License][license-svg]][license-link]
 
@@ -63,6 +64,8 @@ WordPress XML Parser &copy; 2016 by John Wang
 
  [build-status-svg]: https://api.travis-ci.org/grokify/wordpress-xml-go.svg?branch=master
  [build-status-link]: https://travis-ci.org/grokify/wordpress-xml-go
+ [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/wordpress-xml-go
+ [goreport-link]: https://goreportcard.com/report/github.com/grokify/wordpress-xml-go
  [docs-godoc-svg]: https://img.shields.io/badge/docs-godoc-blue.svg
  [docs-godoc-link]: https://godoc.org/github.com/grokify/wordpress-xml-go
  [license-svg]: https://img.shields.io/badge/license-MIT-blue.svg
