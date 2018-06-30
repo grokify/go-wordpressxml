@@ -20,8 +20,8 @@ type WpXml struct {
 }
 
 func NewWordpressXml() WpXml {
-	xml := WpXml{}
-	return xml
+	theXml := WpXml{}
+	return theXml
 }
 
 // ReadXml reads a WordPress XML file from the provided path.
@@ -165,6 +165,7 @@ type Author struct {
 
 // Item is a WordPress XML item which can be a post, page or other object.
 type Item struct {
+	Id             int        `xml:"post_id"`
 	Title          string     `xml:"title"`
 	Creator        string     `xml:"creator"`
 	Encoded        []string   `xml:"encoded"`
@@ -180,6 +181,7 @@ type Item struct {
 	Categories     []Category `xml:"category"`
 	Content        string
 	PubDateRfc3339 string
+	Comments       []Comment  `xml:"comment"`
 }
 
 // ItemThin is a WordPress XML item that is used as additional
@@ -193,4 +195,12 @@ type Category struct {
 	Domain      string `xml:"domain,attr"`
 	DisplayName string `xml:",chardata"`
 	UrlSlug     string `xml:"nicename,attr"`
+}
+
+type Comment struct {
+	Id          int `xml:"comment_id"`
+	Parent      int `xml:"comment_parent"`
+	Author      string `xml:"comment_author"`
+	DateGmt     string `xml:"comment_date_gmt"`
+	Content     string `xml:"comment_content"`
 }
