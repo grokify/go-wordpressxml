@@ -17,8 +17,8 @@ func PrintPost(item Item, author Author) {
 		fmt.Println()
 		fmt.Print("COMMENTS:\n\n")
 		for _, c := range item.Comments {
-			fmt.Println("Author:", c.Author)
-            fmt.Println("--------------")
+			fmt.Print( c.Parent, " <- ", c.Id, " Author:", c.Author)
+            fmt.Println("\n--------------")
 			fmt.Print(c.Content, "\n\n")
 		}
 	}
@@ -60,7 +60,7 @@ func TestPrintFirstPosts(*testing.T) {
 
 // find the first post with at least n comments and print it
 func TestPrintFirstPostWithMultiComments(*testing.T) {
-	n := 7
+	n := 16
 	wpxml := &wp
 
 	for _, item := range wpxml.Channel.Items {
