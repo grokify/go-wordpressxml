@@ -181,7 +181,7 @@ type Item struct {
 	Categories     []Category `xml:"category"`
 	Content        string
 	PubDateRfc3339 string
-	Comments       []Comment  `xml:"comment"`
+	Comments       []Comment `xml:"comment"`
 }
 
 // ItemThin is a WordPress XML item that is used as additional
@@ -198,9 +198,11 @@ type Category struct {
 }
 
 type Comment struct {
-	Id          int `xml:"comment_id"`
-	Parent      int `xml:"comment_parent"`
+	Id          int    `xml:"comment_id"`
+	Parent      int    `xml:"comment_parent"`
 	Author      string `xml:"comment_author"`
+	AuthorEmail string `xml:"comment_author_email"`
+	AuthorUrl   string `xml:"comment_author_url"`
 	DateGmt     string `xml:"comment_date_gmt"`
 	Content     string `xml:"comment_content"`
 }
