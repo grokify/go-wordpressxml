@@ -205,4 +205,5 @@ type Comment struct {
 	AuthorUrl   string `xml:"comment_author_url"`
 	DateGmt     string `xml:"comment_date_gmt"`
 	Content     string `xml:"comment_content"`
+	IndentLevel int    `xml:"-"`
 }
