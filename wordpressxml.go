@@ -17,9 +17,10 @@ type WpXml struct {
 	CreatorToIndex map[string]int
 }
 
-func NewWordpressXml() WpXml {
-	wpxml := WpXml{}
-	return wpxml
+func NewWpXml() WpXml {
+	return WpXml{
+		CreatorCounts:  map[string]int{},
+		CreatorToIndex: map[string]int{}}
 }
 
 // ReadXml reads a WordPress XML file from the provided path.
