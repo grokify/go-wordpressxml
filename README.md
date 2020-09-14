@@ -56,12 +56,6 @@ To contribute:
 
 Please report issues and feature requests on [Github](https://github.com/grokify/go-wordpressxml).
 
-## License
-
-WordPress XML Parser is available under the MIT license. See [LICENSE](LICENSE) for details.
-
-WordPress XML Parser &copy; 2016 by John Wang
-
  [build-status-svg]: https://api.travis-ci.org/grokify/go-wordpressxml.svg?branch=master
  [build-status-link]: https://travis-ci.org/grokify/go-wordpressxml
  [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/go-wordpressxml
