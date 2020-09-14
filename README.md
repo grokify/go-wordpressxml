@@ -31,7 +31,7 @@ import (
 
 func main() {
 	wp := wordpressxml.NewWordpressXml()
-	err := wp.ReadXml("myblog.wordpress.2016-08-13.xml")
+	err := wp.ReadFile("myblog.wordpress.2016-08-13.xml")
 	if err != nil {
 		panic(err)
 	}

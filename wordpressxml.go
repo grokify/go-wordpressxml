@@ -134,7 +134,7 @@ func (wpxml *WpXml) ArticlesMetaTable() table.Table {
 	return tbl
 }
 
-// Writes articles metadata as a CSV file.
+// WriteMetaCsv writes articles metadata as a CSV file.
 func (wpxml *WpXml) WriteMetaCsv(filepath string) error {
 	tbl := wpxml.ArticlesMetaTable()
 	return table.WriteCSV(filepath, &tbl)
