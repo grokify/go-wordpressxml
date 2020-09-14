@@ -2,15 +2,13 @@
 package wordpressxml
 
 import (
-	"encoding/csv"
 	"encoding/xml"
 	"errors"
 	"io/ioutil"
-	"os"
 	"strconv"
 	"time"
 
-	"github.com/grokify/gotilla/time/timeutil"
+	"github.com/grokify/gocharts/data/table"
 )
 
 type WpXml struct {
@@ -20,12 +18,12 @@ type WpXml struct {
 }
 
 func NewWordpressXml() WpXml {
-	xml := WpXml{}
-	return xml
+	wpxml := WpXml{}
+	return wpxml
 }
 
 // ReadXml reads a WordPress XML file from the provided path.
-func (wpxml *WpXml) ReadXml(filepath string) error {
+func (wpxml *WpXml) ReadFile(filepath string) error {
 	bytes, err := ioutil.ReadFile(filepath)
 	if err != nil {
 		return err
@@ -63,9 +61,9 @@ func (wpxml *WpXml) inflateItem(item Item) Item {
 		item.Encoded[0] = ""
 	}
 	if len(item.PubDate) > 0 {
-		dtRfc3339, err := timeutil.FromTo(item.PubDate, time.RFC1123Z, time.RFC3339)
+		dt, err := time.Parse(time.RFC1123Z, item.PubDate)
 		if err == nil {
-			item.PubDateRfc3339 = dtRfc3339
+			item.PubDatetime = dt
 		}
 	}
 	return item
@@ -111,34 +109,27 @@ func (wpxml *WpXml) AuthorForLogin(authorLogin string) (Author, error) {
 
 // ArticlesMetaTable generates the data to be written out
 // as a CSV.
-func (wpxml *WpXml) ArticlesMetaTable() [][]string {
-	articles := [][]string{}
-	header := []string{"Index", "Date", "Login", "Author", "Title", "Link"}
-	articles = append(articles, header)
+func (wpxml *WpXml) ArticlesMetaTable() table.Table {
+	tbl := table.NewTable()
+	tbl.Columns = []string{"Index", "Date", "Login", "Author", "Title", "Link"}
 	a2i := wpxml.AuthorsToIndex()
 	for i, item := range wpxml.Channel.Items {
+		authorDisplayName := ""
 		author, err := wpxml.AuthorForLogin(item.Creator)
-		if err != nil {
-			panic(err)
+		if err == nil {
+			authorDisplayName = author.AuthorDisplayName
 		}
-		article := []string{strconv.Itoa(i), item.PubDate, item.Creator, author.AuthorDisplayName, item.Title, item.Link}
-		articles = append(articles, article)
+		article := []string{strconv.Itoa(i), item.PubDatetime.Format(time.RFC3339), item.Creator, authorDisplayName, item.Title, item.Link}
+		tbl.Records = append(tbl.Records, article)
 	}
 	wpxml.CreatorToIndex = a2i
-	return articles
+	return tbl
 }
 
 // Writes articles metadata as a CSV file.
 func (wpxml *WpXml) WriteMetaCsv(filepath string) error {
-	file, err := os.Create(filepath)
-	if err != nil {
-		return err
-	}
-	defer file.Close()
-
-	w := csv.NewWriter(file)
-	w.WriteAll(wpxml.ArticlesMetaTable())
-	return w.Error()
+	tbl := wpxml.ArticlesMetaTable()
+	return table.WriteCSV(filepath, &tbl)
 }
 
 type Rss struct {
@@ -165,21 +156,21 @@ type Author struct {
 
 // Item is a WordPress XML item which can be a post, page or other object.
 type Item struct {
-	Title          string     `xml:"title"`
-	Creator        string     `xml:"creator"`
-	Encoded        []string   `xml:"encoded"`
-	IsSticky       int        `xml:"is_sticky"`
-	Link           string     `xml:"link"`
-	PubDate        string     `xml:"pubDate"`
-	Description    string     `xml:"description"`
-	PostDate       string     `xml:"post_date"`
-	PostDateGmt    string     `xml:"post_date_gmt"`
-	PostName       string     `xml:"post_name"`
-	PostType       string     `xml:"post_type"`
-	Status         string     `xml:"status"`
-	Categories     []Category `xml:"category"`
-	Content        string
-	PubDateRfc3339 string
+	Title       string     `xml:"title"`
+	Creator     string     `xml:"creator"`
+	Encoded     []string   `xml:"encoded"`
+	IsSticky    int        `xml:"is_sticky"`
+	Link        string     `xml:"link"`
+	PubDate     string     `xml:"pubDate"`
+	Description string     `xml:"description"`
+	PostDate    string     `xml:"post_date"`
+	PostDateGmt string     `xml:"post_date_gmt"`
+	PostName    string     `xml:"post_name"`
+	PostType    string     `xml:"post_type"`
+	Status      string     `xml:"status"`
+	Categories  []Category `xml:"category"`
+	Content     string
+	PubDatetime time.Time
 }
 
 // ItemThin is a WordPress XML item that is used as additional

@@ -7,25 +7,25 @@ WordPress XML Parser
 
 ## Overview
 
-The `wordpress-xml-go` package provides WordPress XML parser.
+The `go-wordpressxml` package provides WordPress XML parser.
 
 ## Documentation
 
-Documentation is provided using godoc and available on [GoDoc.org](https://godoc.org/github.com/grokify/wordpress-xml-go).
+Documentation is provided using godoc and available on [GoDoc.org](https://godoc.org/github.com/grokify/go0wordpressxml).
 
 ## Installation
 
 Installing any of the packages will install the entire library. For example:
 
 ```bash
-$ go get github.com/grokify/wordpress-xml-go
+$ go get github.com/grokify/go-wordpressxml
 ```
 
 ## Usage
 
 ```go
 import (
-	"github.com/grokify/wordpress-xml-go"
+	"github.com/grokify/go-wordpressxml"
 )
 
 func main() {
@@ -48,13 +48,13 @@ Features, Issues, and Pull Requests are always welcome.
 
 To contribute:
 
-1. Fork it ( http://github.com/grokify/wordpress-xml-go/fork )
+1. Fork it ( http://github.com/grokify/go-wordpressxml/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
-Please report issues and feature requests on [Github](https://github.com/grokify/wordpress-xml-go).
+Please report issues and feature requests on [Github](https://github.com/grokify/go-wordpressxml).
 
 ## License
 
@@ -62,11 +62,11 @@ WordPress XML Parser is available under the MIT license. See [LICENSE](LICENSE) 
 
 WordPress XML Parser &copy; 2016 by John Wang
 
- [build-status-svg]: https://api.travis-ci.org/grokify/wordpress-xml-go.svg?branch=master
- [build-status-link]: https://travis-ci.org/grokify/wordpress-xml-go
- [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/wordpress-xml-go
- [goreport-link]: https://goreportcard.com/report/github.com/grokify/wordpress-xml-go
+ [build-status-svg]: https://api.travis-ci.org/grokify/go-wordpressxml.svg?branch=master
+ [build-status-link]: https://travis-ci.org/grokify/go-wordpressxml
+ [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/go-wordpressxml
+ [goreport-link]: https://goreportcard.com/report/github.com/grokify/go-wordpressxml
  [docs-godoc-svg]: https://img.shields.io/badge/docs-godoc-blue.svg
- [docs-godoc-link]: https://godoc.org/github.com/grokify/wordpress-xml-go
+ [docs-godoc-link]: https://godoc.org/github.com/grokify/go-wordpressxml
  [license-svg]: https://img.shields.io/badge/license-MIT-blue.svg
- [license-link]: https://github.com/grokify/wordpress-xml-go/blob/master/LICENSE
+ [license-link]: https://github.com/grokify/go-wordpressxml/blob/master/LICENSE
