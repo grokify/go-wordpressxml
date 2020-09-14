@@ -164,6 +164,7 @@ type Author struct {
 
 // Item is a WordPress XML item which can be a post, page or other object.
 type Item struct {
+	Id           int        `xml:"post_id"`
 	Title        string     `xml:"title"`
 	Creator      string     `xml:"creator"`
 	Encoded      []string   `xml:"encoded"`
@@ -177,6 +178,7 @@ type Item struct {
 	PostType     string     `xml:"post_type"`
 	Status       string     `xml:"status"`
 	Categories   []Category `xml:"category"`
+	Comments     []Comment  `xml:"comment"`
 	Content      string
 	PostDatetime time.Time
 	PubDatetime  time.Time
@@ -193,4 +195,15 @@ type Category struct {
 	Domain      string `xml:"domain,attr"`
 	DisplayName string `xml:",chardata"`
 	UrlSlug     string `xml:"nicename,attr"`
+}
+
+type Comment struct {
+	Id          int    `xml:"comment_id"`
+	Parent      int    `xml:"comment_parent"`
+	Author      string `xml:"comment_author"`
+	AuthorEmail string `xml:"comment_author_email"`
+	AuthorUrl   string `xml:"comment_author_url"`
+	DateGmt     string `xml:"comment_date_gmt"`
+	Content     string `xml:"comment_content"`
+	IndentLevel int    `xml:"-"`
 }
