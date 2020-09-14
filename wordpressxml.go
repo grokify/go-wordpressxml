@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/grokify/gocharts/data/table"
+	"github.com/grokify/gotilla/time/timeutil"
 )
 
 type WpXml struct {
@@ -60,6 +61,12 @@ func (wpxml *WpXml) inflateItem(item Item) Item {
 	if len(item.Encoded) > 0 && len(item.Encoded[0]) > 0 {
 		item.Content = item.Encoded[0]
 		item.Encoded[0] = ""
+	}
+	if len(item.PostDate) > 0 {
+		dt, err := time.Parse(timeutil.SQLTimestamp, item.PostDate)
+		if err == nil {
+			item.PostDatetime = dt
+		}
 	}
 	if len(item.PubDate) > 0 {
 		dt, err := time.Parse(time.RFC1123Z, item.PubDate)
@@ -157,21 +164,22 @@ type Author struct {
 
 // Item is a WordPress XML item which can be a post, page or other object.
 type Item struct {
-	Title       string     `xml:"title"`
-	Creator     string     `xml:"creator"`
-	Encoded     []string   `xml:"encoded"`
-	IsSticky    int        `xml:"is_sticky"`
-	Link        string     `xml:"link"`
-	PubDate     string     `xml:"pubDate"`
-	Description string     `xml:"description"`
-	PostDate    string     `xml:"post_date"`
-	PostDateGmt string     `xml:"post_date_gmt"`
-	PostName    string     `xml:"post_name"`
-	PostType    string     `xml:"post_type"`
-	Status      string     `xml:"status"`
-	Categories  []Category `xml:"category"`
-	Content     string
-	PubDatetime time.Time
+	Title        string     `xml:"title"`
+	Creator      string     `xml:"creator"`
+	Encoded      []string   `xml:"encoded"`
+	IsSticky     int        `xml:"is_sticky"`
+	Link         string     `xml:"link"`
+	PubDate      string     `xml:"pubDate"`
+	Description  string     `xml:"description"`
+	PostDate     string     `xml:"post_date"`
+	PostDateGmt  string     `xml:"post_date_gmt"`
+	PostName     string     `xml:"post_name"`
+	PostType     string     `xml:"post_type"`
+	Status       string     `xml:"status"`
+	Categories   []Category `xml:"category"`
+	Content      string
+	PostDatetime time.Time
+	PubDatetime  time.Time
 }
 
 // ItemThin is a WordPress XML item that is used as additional
