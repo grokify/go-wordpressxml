@@ -1,6 +1,7 @@
 WordPress XML Parser
 ====================
 
+[![Build Status][build-status-svg]][build-status-link]
 [![Go Report Card][goreport-svg]][goreport-link]
 [![Docs][docs-godoc-svg]][docs-godoc-link]
 [![License][license-svg]][license-link]
@@ -56,6 +57,8 @@ To contribute:
 
 Please report issues and feature requests on [Github](https://github.com/grokify/go-wordpressxml).
 
+ [build-status-svg]: https://api.travis-ci.com/grokify/go-wordpressxml.svg?branch=master
+ [build-status-link]: https://travis-ci.com/grokify/go-wordpressxml
  [build-status-svg]: https://api.travis-ci.org/grokify/go-wordpressxml.svg?branch=master
  [build-status-link]: https://travis-ci.org/grokify/go-wordpressxml
  [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/go-wordpressxml
