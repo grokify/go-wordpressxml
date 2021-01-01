@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"github.com/grokify/gocharts/data/table"
-	"github.com/grokify/gotilla/time/timeutil"
+	"github.com/grokify/simplego/time/timeutil"
 )
 
 type WpXml struct {
@@ -153,7 +153,7 @@ type Channel struct {
 
 // Author is the WordPress XML author object.
 type Author struct {
-	AuthorId          int        `xml:"author_id"`
+	AuthorID          int        `xml:"author_id"`
 	AuthorLogin       string     `xml:"author_login"`
 	AuthorEmail       string     `xml:"author_email"`
 	AuthorDisplayName string     `xml:"author_display_name"`
@@ -164,7 +164,7 @@ type Author struct {
 
 // Item is a WordPress XML item which can be a post, page or other object.
 type Item struct {
-	Id           int        `xml:"post_id"`
+	ID           int        `xml:"post_id"`
 	Title        string     `xml:"title"`
 	Creator      string     `xml:"creator"`
 	Encoded      []string   `xml:"encoded"`
@@ -194,15 +194,15 @@ type ItemThin struct {
 type Category struct {
 	Domain      string `xml:"domain,attr"`
 	DisplayName string `xml:",chardata"`
-	UrlSlug     string `xml:"nicename,attr"`
+	URLSlug     string `xml:"nicename,attr"`
 }
 
 type Comment struct {
-	Id          int    `xml:"comment_id"`
+	ID          int    `xml:"comment_id"`
 	Parent      int    `xml:"comment_parent"`
 	Author      string `xml:"comment_author"`
 	AuthorEmail string `xml:"comment_author_email"`
-	AuthorUrl   string `xml:"comment_author_url"`
+	AuthorURL   string `xml:"comment_author_url"`
 	DateGmt     string `xml:"comment_date_gmt"`
 	Content     string `xml:"comment_content"`
 	IndentLevel int    `xml:"-"`
