@@ -118,7 +118,7 @@ func (wpxml *WpXml) AuthorForLogin(authorLogin string) (Author, error) {
 // ArticlesMetaTable generates the data to be written out
 // as a CSV.
 func (wpxml *WpXml) ArticlesMetaTable() table.Table {
-	tbl := table.NewTable()
+	tbl := table.NewTable("Articles Metadata")
 	tbl.Columns = []string{"Index", "Date", "Login", "Author", "Title", "Link"}
 	a2i := wpxml.AuthorsToIndex()
 	for i, item := range wpxml.Channel.Items {
@@ -128,7 +128,7 @@ func (wpxml *WpXml) ArticlesMetaTable() table.Table {
 			authorDisplayName = author.AuthorDisplayName
 		}
 		article := []string{strconv.Itoa(i), item.PubDatetime.Format(time.RFC3339), item.Creator, authorDisplayName, item.Title, item.Link}
-		tbl.Records = append(tbl.Records, article)
+		tbl.Rows = append(tbl.Rows, article)
 	}
 	wpxml.CreatorToIndex = a2i
 	return tbl
@@ -137,7 +137,7 @@ func (wpxml *WpXml) ArticlesMetaTable() table.Table {
 // WriteMetaCsv writes articles metadata as a CSV file.
 func (wpxml *WpXml) WriteMetaCsv(filepath string) error {
 	tbl := wpxml.ArticlesMetaTable()
-	return table.WriteCSV(filepath, &tbl)
+	return tbl.WriteCSV(filepath)
 }
 
 type Rss struct {
