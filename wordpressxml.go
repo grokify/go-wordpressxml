@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"github.com/grokify/gocharts/data/table"
-	"github.com/grokify/simplego/time/timeutil"
+	"github.com/grokify/mogo/time/timeutil"
 )
 
 type WpXml struct {

@@ -8,7 +8,7 @@ import (
 
 	wxr "github.com/frankbille/go-wxr-import"
 	"github.com/grokify/go-wordpressxml"
-	"github.com/grokify/simplego/type/stringsutil"
+	"github.com/grokify/mogo/type/stringsutil"
 )
 
 type Post struct {
