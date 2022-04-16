@@ -95,7 +95,7 @@ func ConvertWxrItemCategories(cats []wxr.ItemCategory) []string {
 	return stringsutil.SliceCondenseSpace(out, true, false)
 }
 
-func Convert(wpxml *wordpressxml.WpXml) []Post {
+func Convert(wpxml *wordpressxml.WpXML) []Post {
 	posts := []Post{}
 	for _, item := range wpxml.Channel.Items {
 		item.PostType = strings.ToLower(strings.TrimSpace(item.PostType))
