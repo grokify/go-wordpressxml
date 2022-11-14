@@ -109,8 +109,7 @@ func (wpxml *WpXML) AuthorForLogin(authorLogin string) (Author, error) {
 	return Author{}, errors.New("Author Not Found")
 }
 
-// ArticlesMetaTable generates the data to be written out
-// as a CSV.
+// ArticlesMetaTable generates the data to be written out as a CSV.
 func (wpxml *WpXML) ArticlesMetaTable() table.Table {
 	tbl := table.NewTable("Articles Metadata")
 	tbl.Columns = []string{"Index", "Date", "Login", "Author", "Title", "Link"}
@@ -121,8 +120,14 @@ func (wpxml *WpXML) ArticlesMetaTable() table.Table {
 		if err == nil {
 			authorDisplayName = author.AuthorDisplayName
 		}
-		article := []string{strconv.Itoa(i), item.PubDatetime.Format(time.RFC3339), item.Creator, authorDisplayName, item.Title, item.Link}
-		tbl.Rows = append(tbl.Rows, article)
+		tbl.Rows = append(tbl.Rows,
+			[]string{
+				strconv.Itoa(i),
+				item.PubDatetime.Format(time.RFC3339),
+				item.Creator,
+				authorDisplayName,
+				item.Title,
+				item.Link})
 	}
 	wpxml.CreatorToIndex = a2i
 	return tbl
