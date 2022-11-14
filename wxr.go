@@ -2,13 +2,13 @@
 package wordpressxml
 
 import (
-	"io/ioutil"
+	"os"
 
 	"github.com/frankbille/go-wxr-import"
 )
 
 func ReadFileWXR(filename string) (wxr.Wxr, error) {
-	bytes, err := ioutil.ReadFile(filename)
+	bytes, err := os.ReadFile(filename)
 	if err != nil {
 		return wxr.Wxr{}, err
 	}

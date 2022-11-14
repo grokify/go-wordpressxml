@@ -7,7 +7,7 @@ import (
 	"time"
 
 	wxr "github.com/frankbille/go-wxr-import"
-	"github.com/grokify/go-wordpressxml"
+	wordpressxml "github.com/grokify/go-wordpressxml"
 	"github.com/grokify/mogo/type/stringsutil"
 )
 

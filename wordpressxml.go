@@ -4,7 +4,7 @@ package wordpressxml
 import (
 	"encoding/xml"
 	"errors"
-	"io/ioutil"
+	"os"
 	"strconv"
 	"time"
 
@@ -26,7 +26,7 @@ func NewWpXML() WpXML {
 
 // ReadXml reads a WordPress XML file from the provided path.
 func (wpxml *WpXML) ReadFile(filepath string) error {
-	bytes, err := ioutil.ReadFile(filepath)
+	bytes, err := os.ReadFile(filepath)
 	if err != nil {
 		return err
 	}
