@@ -4,7 +4,7 @@ package wordpressxml
 import (
 	"os"
 
-	"github.com/frankbille/go-wxr-import"
+	wxr "github.com/frankbille/go-wxr-import"
 )
 
 func ReadFileWXR(filename string) (wxr.Wxr, error) {
