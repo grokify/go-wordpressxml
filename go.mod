@@ -5,12 +5,12 @@ go 1.18
 require (
 	github.com/frankbille/go-wxr-import v0.0.0-20140707080134-e1d8664523d4
 	github.com/grokify/gocharts/v2 v2.8.5
-	github.com/grokify/mogo v0.41.5
+	github.com/grokify/mogo v0.41.10
 )
 
 require (
 	github.com/buger/jsonparser v1.1.1 // indirect
-	github.com/huandu/xstrings v1.3.3 // indirect
+	github.com/huandu/xstrings v1.4.0 // indirect
 	github.com/mohae/deepcopy v0.0.0-20170929034955-c48cc78d4826 // indirect
 	github.com/richardlehane/mscfb v1.0.4 // indirect
 	github.com/richardlehane/msoleps v1.0.3 // indirect

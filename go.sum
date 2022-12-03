@@ -15,10 +15,10 @@ github.com/gopherjs/gopherjs v0.0.0-20181017120253-0766667cb4d1 h1:EGx4pi6eqNxGa
 github.com/gopherjs/gopherjs v0.0.0-20181017120253-0766667cb4d1/go.mod h1:wJfORRmW1u3UXTncJ5qlYoELFm8eSnnEO6hX4iZ3EWY=
 github.com/grokify/gocharts/v2 v2.8.5 h1:KnFQ4boXy6JOZBJy5Y6ZKDEqAnC5FffoZxsr6thLEZA=
 github.com/grokify/gocharts/v2 v2.8.5/go.mod h1:3Ndd6G2sR+amxP9kWeoejli898TNf1raTnN+6hZ4mbc=
-github.com/grokify/mogo v0.41.5 h1:pVNucI3Xub4zpjxlVlY+u7cqyMHzJ6QLe094p0zl1Dg=
-github.com/grokify/mogo v0.41.5/go.mod h1:qF5wHvDFTGfHm+MTrS4B7ONlAC6RKtbCMQeNkhPEq0Q=
-github.com/huandu/xstrings v1.3.3 h1:/Gcsuc1x8JVbJ9/rlye4xZnVAbEkGauT8lbebqcQws4=
-github.com/huandu/xstrings v1.3.3/go.mod h1:y5/lhBue+AyNmUVz9RLU9xbLR0o4KIIExikq4ovT0aE=
+github.com/grokify/mogo v0.41.10 h1:YfK4X1vXVGt3q4c/L0amUKHOGQeMfmgH1t9jGfIeelU=
+github.com/grokify/mogo v0.41.10/go.mod h1:qF5wHvDFTGfHm+MTrS4B7ONlAC6RKtbCMQeNkhPEq0Q=
+github.com/huandu/xstrings v1.4.0 h1:D17IlohoQq4UcpqD7fDk80P7l+lwAmlFaBHgOipl2FU=
+github.com/huandu/xstrings v1.4.0/go.mod h1:y5/lhBue+AyNmUVz9RLU9xbLR0o4KIIExikq4ovT0aE=
 github.com/jtolds/gls v4.20.0+incompatible h1:xdiiI2gbIgH/gLH7ADydsJ1uDOEzR8yvV7C0MuV77Wo=
 github.com/jtolds/gls v4.20.0+incompatible/go.mod h1:QJZ7F/aHp+rZTRtaJ1ow/lLfFfVYBRgL+9YlvaHOwJU=
 github.com/klauspost/compress v1.13.4/go.mod h1:8dP1Hq4DHOhN9w426knH3Rhby4rFm6D8eO+e+Dq5Gzg=
