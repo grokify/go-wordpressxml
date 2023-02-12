@@ -13,8 +13,8 @@ github.com/google/go-cmp v0.5.5/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/
 github.com/google/go-cmp v0.5.8 h1:e6P7q2lk1O+qJJb4BtCQXlK8vWEO8V1ZeuEdJNOqZyg=
 github.com/gopherjs/gopherjs v0.0.0-20181017120253-0766667cb4d1 h1:EGx4pi6eqNxGaHF6qqu48+N2wcFQ5qg5FXgOdqsJ5d8=
 github.com/gopherjs/gopherjs v0.0.0-20181017120253-0766667cb4d1/go.mod h1:wJfORRmW1u3UXTncJ5qlYoELFm8eSnnEO6hX4iZ3EWY=
-github.com/grokify/gocharts/v2 v2.8.8 h1:OQKqV3vQsbTgY1lGvlN1zTBjIu0QVxQ0wg5w6QzxVq8=
-github.com/grokify/gocharts/v2 v2.8.8/go.mod h1:wNwlKcBUr1M1GheOPrvFANEBsASBySM8svVX5ILKZkQ=
+github.com/grokify/gocharts/v2 v2.8.9 h1:cAaXHZmtQhBTtC13JqvonBERxq+KrIRztjY7O+pDbKE=
+github.com/grokify/gocharts/v2 v2.8.9/go.mod h1:PwzEZPZqZsqywifLnC/HybXRFEZ8gd208ZWFqOjAZgo=
 github.com/grokify/mogo v0.46.0 h1:Kg+xURog83CjHQe3bk8pYsU0B+F9chJ0MptHGPpe6Hc=
 github.com/grokify/mogo v0.46.0/go.mod h1:MYn+ydlLjbTzZtjmW1yN/EeEqE5A3Xv7PJqx5+ZNAu0=
 github.com/huandu/xstrings v1.4.0 h1:D17IlohoQq4UcpqD7fDk80P7l+lwAmlFaBHgOipl2FU=
