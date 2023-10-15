@@ -57,7 +57,7 @@ To contribute:
 
 Please report issues and feature requests on [Github](https://github.com/grokify/go-wordpressxml).
 
- [build-status-svg]: https://github.com/grokify/go-wordpressxml/workflows/go%20build/badge.svg
+ [build-status-svg]: https://github.com/grokify/go-wordpressxml/workflows/test/badge.svg
  [build-status-url]: https://github.com/grokify/go-wordpressxml/actions
  [build-status-svg]: https://api.travis-ci.org/grokify/go-wordpressxml.svg?branch=master
  [build-status-url]: https://travis-ci.org/grokify/go-wordpressxml
