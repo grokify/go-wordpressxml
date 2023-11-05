@@ -12,20 +12,20 @@ import (
 	"github.com/grokify/mogo/time/timeutil"
 )
 
-type WpXML struct {
+type WordPressXML struct {
 	Channel        Channel `xml:"channel"`
 	CreatorCounts  map[string]int
 	CreatorToIndex map[string]int
 }
 
-func NewWpXML() WpXML {
-	return WpXML{
+func NewWordPressXML() WordPressXML {
+	return WordPressXML{
 		CreatorCounts:  map[string]int{},
 		CreatorToIndex: map[string]int{}}
 }
 
 // ReadXml reads a WordPress XML file from the provided path.
-func (wpxml *WpXML) ReadFile(filepath string) error {
+func (wpxml *WordPressXML) ReadFile(filepath string) error {
 	bytes, err := os.ReadFile(filepath)
 	if err != nil {
 		return err
@@ -38,7 +38,7 @@ func (wpxml *WpXML) ReadFile(filepath string) error {
 	return nil
 }
 
-func (wpxml *WpXML) inflate() {
+func (wpxml *WordPressXML) inflate() {
 	creatorMap := map[string]int{}
 	for i, item := range wpxml.Channel.Items {
 		if len(item.Creator) > 0 {
@@ -52,7 +52,7 @@ func (wpxml *WpXML) inflate() {
 	wpxml.inflateAuthors()
 }
 
-func (wpxml *WpXML) inflateItem(item Item) Item {
+func (wpxml *WordPressXML) inflateItem(item Item) Item {
 	if len(item.Encoded) > 0 && len(item.Encoded[0]) > 0 {
 		item.Content = item.Encoded[0]
 		item.Encoded[0] = ""
@@ -72,7 +72,7 @@ func (wpxml *WpXML) inflateItem(item Item) Item {
 	return item
 }
 
-func (wpxml *WpXML) inflateAuthors() {
+func (wpxml *WordPressXML) inflateAuthors() {
 	a2i := wpxml.AuthorsToIndex()
 	for i, item := range wpxml.Channel.Items {
 		if len(item.Creator) > 0 {
@@ -90,7 +90,7 @@ func (wpxml *WpXML) inflateAuthors() {
 	wpxml.CreatorToIndex = a2i
 }
 
-func (wpxml *WpXML) AuthorsToIndex() map[string]int {
+func (wpxml *WordPressXML) AuthorsToIndex() map[string]int {
 	a2i := map[string]int{}
 	for i, author := range wpxml.Channel.Authors {
 		a2i[author.AuthorLogin] = i
@@ -98,9 +98,8 @@ func (wpxml *WpXML) AuthorsToIndex() map[string]int {
 	return a2i
 }
 
-// AuthorForLogin returns the Author object for a given AuthorLogin
-// or username.
-func (wpxml *WpXML) AuthorForLogin(authorLogin string) (Author, error) {
+// AuthorForLogin returns the Author object for a given AuthorLogin or username.
+func (wpxml *WordPressXML) AuthorForLogin(authorLogin string) (Author, error) {
 	a2i := wpxml.CreatorToIndex
 	if index, ok := a2i[authorLogin]; ok {
 		author := wpxml.Channel.Authors[index]
@@ -110,7 +109,7 @@ func (wpxml *WpXML) AuthorForLogin(authorLogin string) (Author, error) {
 }
 
 // ArticlesMetaTable generates the data to be written out as a CSV.
-func (wpxml *WpXML) ArticlesMetaTable() table.Table {
+func (wpxml *WordPressXML) ArticlesMetaTable() table.Table {
 	tbl := table.NewTable("Articles Metadata")
 	tbl.Columns = []string{"Index", "Date", "Login", "Author", "Title", "Link"}
 	a2i := wpxml.AuthorsToIndex()
@@ -134,12 +133,12 @@ func (wpxml *WpXML) ArticlesMetaTable() table.Table {
 }
 
 // WriteMetaCsv writes articles metadata as a CSV file.
-func (wpxml *WpXML) WriteMetaCsv(filepath string) error {
+func (wpxml *WordPressXML) WriteMetaCSV(filepath string) error {
 	tbl := wpxml.ArticlesMetaTable()
 	return tbl.WriteCSV(filepath)
 }
 
-type Rss struct {
+type RSS struct {
 	Channel Channel `xml:"channel"`
 }
 

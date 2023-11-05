@@ -30,12 +30,12 @@ import (
 )
 
 func main() {
-	wp := wordpressxml.NewWordpressXml()
+	wp := wordpressxml.NewWordPressXML()
 	err := wp.ReadFile("myblog.wordpress.2016-08-13.xml")
 	if err != nil {
 		panic(err)
 	}
-	wp.WriteMetaCsv("articles.csv")
+	wp.WriteMetaCSV("articles.csv")
 }
 ```
 
