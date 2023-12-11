@@ -6,7 +6,7 @@ go 1.21
 
 require (
 	github.com/frankbille/go-wxr-import v0.0.0-20140707080134-e1d8664523d4
-	github.com/grokify/gocharts/v2 v2.15.2
+	github.com/grokify/gocharts/v2 v2.16.0
 	github.com/grokify/mogo v0.62.2
 )
 
