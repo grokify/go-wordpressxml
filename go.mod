@@ -7,7 +7,7 @@ go 1.21
 require (
 	github.com/frankbille/go-wxr-import v0.0.0-20140707080134-e1d8664523d4
 	github.com/grokify/gocharts/v2 v2.16.1
-	github.com/grokify/mogo v0.62.3
+	github.com/grokify/mogo v0.62.5
 )
 
 require (
@@ -22,7 +22,7 @@ require (
 	github.com/xuri/excelize/v2 v2.8.0 // indirect
 	github.com/xuri/nfp v0.0.0-20230919160717-d98342af3f05 // indirect
 	golang.org/x/crypto v0.16.0 // indirect
-	golang.org/x/exp v0.0.0-20231206192017-f3f8817b8deb // indirect
+	golang.org/x/exp v0.0.0-20231214170342-aacd6d4b4611 // indirect
 	golang.org/x/net v0.19.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
 )
