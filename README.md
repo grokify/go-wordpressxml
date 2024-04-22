@@ -55,7 +55,7 @@ To contribute:
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
-Please report issues and feature requests on [Github](https://github.com/grokify/go-wordpressxml).
+Please report issues and feature requests on [GitHub](https://github.com/grokify/go-wordpressxml).
 
  [build-status-svg]: https://github.com/grokify/go-wordpressxml/workflows/test/badge.svg
  [build-status-url]: https://github.com/grokify/go-wordpressxml/actions
