@@ -58,7 +58,7 @@ func (wpxml *WordPressXML) inflateItem(item Item) Item {
 		item.Encoded[0] = ""
 	}
 	if len(item.PostDate) > 0 {
-		dt, err := time.Parse(timeutil.SQLTimestamp, item.PostDate)
+		dt, err := time.Parse(timeutil.ISO9075, item.PostDate)
 		if err == nil {
 			item.PostDatetime = dt
 		}
