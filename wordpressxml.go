@@ -6,6 +6,7 @@ import (
 	"errors"
 	"os"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/grokify/gocharts/v2/data/table"
@@ -100,12 +101,45 @@ func (wpxml *WordPressXML) AuthorsToIndex() map[string]int {
 
 // AuthorForLogin returns the Author object for a given AuthorLogin or username.
 func (wpxml *WordPressXML) AuthorForLogin(authorLogin string) (Author, error) {
+
 	a2i := wpxml.CreatorToIndex
 	if index, ok := a2i[authorLogin]; ok {
 		author := wpxml.Channel.Authors[index]
 		return author, nil
 	}
 	return Author{}, errors.New("Author Not Found")
+}
+
+// ItemsToHTML generates a simple HTML file from the items in a wordpress blog
+func (wpxml *WordPressXML) ItemsToHTML(filepath string) {
+
+	f, err := os.Create(filepath)
+	if err != nil {
+		panic(err)
+	}
+	defer f.Close()
+
+	header := []byte("<HTML><BODY>")
+	f.Write(header)
+
+	for _, item := range wpxml.Channel.Items {
+
+		title := []byte("<h2>" + item.Title + "</h2>\n")
+		f.Write(title)
+
+		dateOnly := strings.Split(item.PostDate, " ")
+		date := []byte("<p>" + dateOnly[0] + "</p>\n")
+		f.Write(date)
+
+		contentStr := strings.ReplaceAll(item.Content, "\n", "<BR>\n")
+		theContent := []byte(contentStr)
+
+		f.Write(theContent)
+	}
+
+	footer := []byte("</BODY></HTML>")
+	f.Write(footer)
+
 }
 
 // ArticlesMetaTable generates the data to be written out as a CSV.
