@@ -12,7 +12,7 @@ The `go-wordpressxml` package provides WordPress XML parser.
 
 ## Documentation
 
-Documentation is provided using godoc and available on [GoDoc.org](https://godoc.org/github.com/grokify/go0wordpressxml).
+Documentation is provided using godoc and available on [GoDoc.org](https://godoc.org/github.com/grokify/go-wordpressxml).
 
 ## Installation
 
