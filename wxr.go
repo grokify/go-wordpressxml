@@ -8,9 +8,9 @@ import (
 )
 
 func ReadFileWXR(filename string) (wxr.Wxr, error) {
-	bytes, err := os.ReadFile(filename)
-	if err != nil {
+	if bytes, err := os.ReadFile(filename); err != nil {
 		return wxr.Wxr{}, err
+	} else {
+		return wxr.ParseWxr(bytes), nil
 	}
-	return wxr.ParseWxr(bytes), nil
 }
