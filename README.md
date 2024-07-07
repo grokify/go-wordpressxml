@@ -8,7 +8,7 @@ WordPress XML Parser
 
 ## Overview
 
-The `go-wordpressxml` package provides WordPress XML parser.
+The `go-wordpressxml` package provides a WordPress WXR (WordPress eXtended RSS) XML parser.
 
 ## Documentation
 
