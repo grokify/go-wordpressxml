@@ -4,6 +4,7 @@ package wordpressxml
 import (
 	"encoding/xml"
 	"errors"
+	"html"
 	"os"
 	"strconv"
 	"strings"
@@ -45,7 +46,6 @@ func (wpxml *WordPressXML) inflate() {
 		if len(item.Creator) > 0 {
 			creatorMap[item.Creator]++
 		}
-
 		item = wpxml.inflateItem(item)
 		wpxml.Channel.Items[i] = item
 	}
@@ -59,14 +59,17 @@ func (wpxml *WordPressXML) inflateItem(item Item) Item {
 		item.Encoded[0] = ""
 	}
 	if len(item.PostDate) > 0 {
-		dt, err := time.Parse(timeutil.ISO9075, item.PostDate)
-		if err == nil {
+		if dt, err := time.Parse(timeutil.ISO9075, item.PostDate); err == nil {
 			item.PostDatetime = dt
 		}
 	}
+	if len(item.PostDateGMT) > 0 {
+		if dt, err := time.Parse(timeutil.ISO9075, item.PostDateGMT); err == nil {
+			item.PostDatetimeGMT = dt
+		}
+	}
 	if len(item.PubDate) > 0 {
-		dt, err := time.Parse(time.RFC1123Z, item.PubDate)
-		if err == nil {
+		if dt, err := time.Parse(time.RFC1123Z, item.PubDate); err == nil {
 			item.PubDatetime = dt
 		}
 	}
@@ -101,7 +104,6 @@ func (wpxml *WordPressXML) AuthorsToIndex() map[string]int {
 
 // AuthorForLogin returns the Author object for a given AuthorLogin or username.
 func (wpxml *WordPressXML) AuthorForLogin(authorLogin string) (Author, error) {
-
 	a2i := wpxml.CreatorToIndex
 	if index, ok := a2i[authorLogin]; ok {
 		author := wpxml.Channel.Authors[index]
@@ -110,36 +112,58 @@ func (wpxml *WordPressXML) AuthorForLogin(authorLogin string) (Author, error) {
 	return Author{}, errors.New("Author Not Found")
 }
 
-// ItemsToHTML generates a simple HTML file from the items in a wordpress blog
-func (wpxml *WordPressXML) ItemsToHTML(filepath string) {
-
+// ItemsToHTML generates a simple HTML file from the items in a WordPress blog.
+func (wpxml *WordPressXML) ItemsToHTML(filepath, title string) error {
 	f, err := os.Create(filepath)
 	if err != nil {
-		panic(err)
+		return err
 	}
 	defer f.Close()
 
-	header := []byte("<HTML><BODY>")
-	f.Write(header)
+	header := `<html><head><meta charset="utf-8">`
+	var h1 string
+	if title != "" {
+		header += "<title>" + html.EscapeString(title) + "</title>"
+		h1 = "<h1>" + html.EscapeString(title) + "</h1>"
+	}
+	header += `</head><body>` + h1
 
-	for _, item := range wpxml.Channel.Items {
-
-		title := []byte("<h2>" + item.Title + "</h2>\n")
-		f.Write(title)
-
-		dateOnly := strings.Split(item.PostDate, " ")
-		date := []byte("<p>" + dateOnly[0] + "</p>\n")
-		f.Write(date)
-
-		contentStr := strings.ReplaceAll(item.Content, "\n", "<BR>\n")
-		theContent := []byte(contentStr)
-
-		f.Write(theContent)
+	if _, err = f.Write([]byte(header)); err != nil {
+		return err
 	}
 
-	footer := []byte("</BODY></HTML>")
-	f.Write(footer)
+	for _, item := range wpxml.Channel.Items {
+		title := []byte("<h2>" + html.EscapeString(item.Title) + "</h2>\n")
+		if _, err := f.Write(title); err != nil {
+			return err
+		}
+		if !item.PostDatetime.IsZero() {
+			date := []byte("<p>" + html.EscapeString(item.PostDatetime.Format(time.DateOnly)) + "</p>\n")
+			if _, err := f.Write(date); err != nil {
+				return err
+			}
+		} else if !item.PostDatetimeGMT.IsZero() {
+			date := []byte("<p>" + html.EscapeString(item.PostDatetimeGMT.Format(time.DateOnly)) + "</p>\n")
+			if _, err := f.Write(date); err != nil {
+				return err
+			}
+		}
 
+		lines := strings.Split(item.Content, "\n")
+		for i, line := range lines {
+			if _, err := f.Write([]byte(line)); err != nil {
+				return err
+			}
+			if i != len(lines)-1 {
+				if _, err := f.Write([]byte("<br/>")); err != nil {
+					return err
+				}
+			}
+		}
+	}
+
+	_, err = f.Write([]byte("</body></html>"))
+	return err
 }
 
 // ArticlesMetaTable generates the data to be written out as a CSV.
@@ -196,24 +220,25 @@ type Author struct {
 
 // Item is a WordPress XML item which can be a post, page or other object.
 type Item struct {
-	ID           int        `xml:"post_id"`
-	Title        string     `xml:"title"`
-	Creator      string     `xml:"creator"`
-	Encoded      []string   `xml:"encoded"`
-	IsSticky     int        `xml:"is_sticky"`
-	Link         string     `xml:"link"`
-	PubDate      string     `xml:"pubDate"`
-	Description  string     `xml:"description"`
-	PostDate     string     `xml:"post_date"`
-	PostDateGmt  string     `xml:"post_date_gmt"`
-	PostName     string     `xml:"post_name"`
-	PostType     string     `xml:"post_type"`
-	Status       string     `xml:"status"`
-	Categories   []Category `xml:"category"`
-	Comments     []Comment  `xml:"comment"`
-	Content      string
-	PostDatetime time.Time
-	PubDatetime  time.Time
+	ID              int        `xml:"post_id"`
+	Title           string     `xml:"title"`
+	Creator         string     `xml:"creator"`
+	Encoded         []string   `xml:"encoded"`
+	IsSticky        int        `xml:"is_sticky"`
+	Link            string     `xml:"link"`
+	PubDate         string     `xml:"pubDate"`
+	Description     string     `xml:"description"`
+	PostDate        string     `xml:"post_date"`
+	PostDateGMT     string     `xml:"post_date_gmt"`
+	PostName        string     `xml:"post_name"`
+	PostType        string     `xml:"post_type"`
+	Status          string     `xml:"status"`
+	Categories      []Category `xml:"category"`
+	Comments        []Comment  `xml:"comment"`
+	Content         string
+	PostDatetime    time.Time
+	PostDatetimeGMT time.Time
+	PubDatetime     time.Time
 }
 
 // ItemThin is a WordPress XML item that is used as additional
