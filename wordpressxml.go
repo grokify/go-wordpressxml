@@ -151,7 +151,7 @@ func (wpxml *WordPressXML) ItemsToHTML(filepath, title string) error {
 
 		lines := strings.Split(item.Content, "\n")
 		for i, line := range lines {
-			if _, err := f.Write([]byte(line)); err != nil {
+			if _, err := f.Write([]byte(html.EscapeString(line))); err != nil {
 				return err
 			}
 			if i != len(lines)-1 {
