@@ -4,10 +4,10 @@ github.com/frankbille/go-wxr-import v0.0.0-20140707080134-e1d8664523d4 h1:6UaLoQ
 github.com/frankbille/go-wxr-import v0.0.0-20140707080134-e1d8664523d4/go.mod h1:Aeuh35rf3KRmTS6dmjdRV0oM3S/2DnEV84zhJYbba3Y=
 github.com/gopherjs/gopherjs v0.0.0-20181017120253-0766667cb4d1 h1:EGx4pi6eqNxGaHF6qqu48+N2wcFQ5qg5FXgOdqsJ5d8=
 github.com/gopherjs/gopherjs v0.0.0-20181017120253-0766667cb4d1/go.mod h1:wJfORRmW1u3UXTncJ5qlYoELFm8eSnnEO6hX4iZ3EWY=
-github.com/grokify/gocharts/v2 v2.19.8 h1:r9cYGngtRCFdmIkZQuL3eXNZ51/Eka/2/QOpKSiPMoQ=
-github.com/grokify/gocharts/v2 v2.19.8/go.mod h1:Jrt8PBFCHHgcQSbfc+Pz+kg0miGuhwCZJVELWMp6b94=
-github.com/grokify/mogo v0.64.9 h1:sCS/or6Gk1xYOlH+3PI1TkgiALC63pvmXFsAGDD9Dg4=
-github.com/grokify/mogo v0.64.9/go.mod h1:lyAkBnG6PoXz1F4Pb7TPVaH+1aWLANgUxGSnlgvtVHA=
+github.com/grokify/gocharts/v2 v2.20.0 h1:H+7AfoNJBWZTdQtDSOJmxMi7vSiHHQ51fZOvk3bA0uk=
+github.com/grokify/gocharts/v2 v2.20.0/go.mod h1:29218Yun0/uoYId4YB+3P1DVHpeX+uy1dWUwR6MzfQI=
+github.com/grokify/mogo v0.64.10 h1:zK8xzDFXmCwYyoTp72urPMv/X/DuBLtX51/oVJOO3IM=
+github.com/grokify/mogo v0.64.10/go.mod h1:zZsDlAknrt0pTHGeNpm3ZNaUTHSGQoIL6qtmjx0IB0I=
 github.com/huandu/xstrings v1.5.0 h1:2ag3IFq9ZDANvthTwTiqSSZLjDc+BedvHPAp5tJy2TI=
 github.com/huandu/xstrings v1.5.0/go.mod h1:y5/lhBue+AyNmUVz9RLU9xbLR0o4KIIExikq4ovT0aE=
 github.com/jtolds/gls v4.20.0+incompatible h1:xdiiI2gbIgH/gLH7ADydsJ1uDOEzR8yvV7C0MuV77Wo=

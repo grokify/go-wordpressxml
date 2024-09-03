@@ -6,8 +6,8 @@ toolchain go1.22.3
 
 require (
 	github.com/frankbille/go-wxr-import v0.0.0-20140707080134-e1d8664523d4
-	github.com/grokify/gocharts/v2 v2.19.8
-	github.com/grokify/mogo v0.64.9
+	github.com/grokify/gocharts/v2 v2.20.0
+	github.com/grokify/mogo v0.64.10
 )
 
 require (
