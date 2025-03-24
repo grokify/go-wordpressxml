@@ -6,8 +6,8 @@ github.com/gopherjs/gopherjs v0.0.0-20181017120253-0766667cb4d1 h1:EGx4pi6eqNxGa
 github.com/gopherjs/gopherjs v0.0.0-20181017120253-0766667cb4d1/go.mod h1:wJfORRmW1u3UXTncJ5qlYoELFm8eSnnEO6hX4iZ3EWY=
 github.com/grokify/gocharts/v2 v2.22.3 h1:56TTijH0BBrMYaHszC+CxeZwKA0NF7Ot4EVT9dx+EZI=
 github.com/grokify/gocharts/v2 v2.22.3/go.mod h1:q1BjtngsSaHpICjqxzDsaHKDtYZLjr6aMH7FWATeIG8=
-github.com/grokify/mogo v0.68.1 h1:IKS7wWZ6qWIvkk0SkWYwu93W3LFQMDbXUNoQuxPhDoA=
-github.com/grokify/mogo v0.68.1/go.mod h1:Zgd5Swzt7tUCwz7Emcu1IrW0RVzjGWSW0vHLvn1AG7M=
+github.com/grokify/mogo v0.68.3 h1:uxW6QEpByw6H5ip5aKhSZEwSgGcA/ZmPKzlhnwFYoAg=
+github.com/grokify/mogo v0.68.3/go.mod h1:SDo9CZppohWwRm1XZZPuNzL2O4gmBDwyhDbBVwk4I0A=
 github.com/huandu/xstrings v1.5.0 h1:2ag3IFq9ZDANvthTwTiqSSZLjDc+BedvHPAp5tJy2TI=
 github.com/huandu/xstrings v1.5.0/go.mod h1:y5/lhBue+AyNmUVz9RLU9xbLR0o4KIIExikq4ovT0aE=
 github.com/jtolds/gls v4.20.0+incompatible h1:xdiiI2gbIgH/gLH7ADydsJ1uDOEzR8yvV7C0MuV77Wo=
