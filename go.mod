@@ -2,10 +2,12 @@ module github.com/grokify/go-wordpressxml
 
 go 1.23.2
 
+toolchain go1.24.1
+
 require (
 	github.com/frankbille/go-wxr-import v0.0.0-20140707080134-e1d8664523d4
 	github.com/grokify/gocharts/v2 v2.22.6
-	github.com/grokify/mogo v0.68.3
+	github.com/grokify/mogo v0.68.4
 )
 
 require (
@@ -22,6 +24,6 @@ require (
 	golang.org/x/crypto v0.36.0 // indirect
 	golang.org/x/exp v0.0.0-20250305212735-054e65f0b394 // indirect
 	golang.org/x/image v0.25.0 // indirect
-	golang.org/x/net v0.37.0 // indirect
+	golang.org/x/net v0.38.0 // indirect
 	golang.org/x/text v0.23.0 // indirect
 )
