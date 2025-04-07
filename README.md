@@ -58,9 +58,9 @@ To contribute:
 
 Please report issues and feature requests on [GitHub](https://github.com/grokify/go-wordpressxml).
 
- [build-status-svg]: https://github.com/grokify/go-wordpressxml/workflows/test/badge.svg
- [build-status-url]: https://github.com/grokify/go-wordpressxml/actions/workflows/test.yaml
- [lint-status-svg]: https://github.com/grokify/go-wordpressxml/workflows/lint/badge.svg
+ [build-status-svg]: https://github.com/grokify/go-wordpressxml/actions/workflows/ci.yaml/badge.svg?branch=master
+ [build-status-url]: https://github.com/grokify/go-wordpressxml/actions/workflows/ci.yaml
+ [lint-status-svg]: https://github.com/grokify/go-wordpressxml/actions/workflows/lint.yaml/badge.svg?branch=master
  [lint-status-url]: https://github.com/grokify/go-wordpressxml/actions/workflows/lint.yaml
  [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/go-wordpressxml
  [goreport-url]: https://goreportcard.com/report/github.com/grokify/go-wordpressxml
