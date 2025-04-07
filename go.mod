@@ -4,7 +4,7 @@ go 1.23.2
 
 require (
 	github.com/frankbille/go-wxr-import v0.0.0-20140707080134-e1d8664523d4
-	github.com/grokify/gocharts/v2 v2.22.6
+	github.com/grokify/gocharts/v2 v2.23.1
 	github.com/grokify/mogo v0.68.5
 )
 
