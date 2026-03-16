@@ -32,11 +32,11 @@ The `go-wordpressxml` package provides a WordPress WXR (WordPress eXtended RSS) 
 
 ## Features
 
-- Parse WordPress XML export files
-- Extract post metadata (authors, dates, categories, comments)
-- Convert WordPress exports to [Hugo](https://gohugo.io/) static site format
-- Export article metadata to CSV
-- Export articles to HTML
+- 📄 Parse WordPress XML export files
+- 🏷️ Extract post metadata (authors, dates, categories, comments)
+- 🔄 Convert WordPress exports to [Hugo](https://gohugo.io/) static site format
+- 📊 Export article metadata to CSV
+- 🌐 Export articles to HTML
 
 ## Documentation
 
