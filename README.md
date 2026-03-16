@@ -19,20 +19,28 @@ WordPress XML Parser
  [goreport-url]: https://goreportcard.com/report/github.com/grokify/go-wordpressxml
  [docs-godoc-svg]: https://pkg.go.dev/badge/github.com/grokify/go-wordpressxml
  [docs-godoc-url]: https://pkg.go.dev/github.com/grokify/go-wordpressxml
- [viz-svg]: https://img.shields.io/badge/visualizaton-Go-blue.svg
+ [viz-svg]: https://img.shields.io/badge/visualization-Go-blue.svg
  [viz-url]: https://mango-dune-07a8b7110.1.azurestaticapps.net/?repo=grokify%2Fgo-wordpressxml
  [loc-svg]: https://tokei.rs/b1/github/grokify/go-wordpressxml
  [repo-url]: https://github.com/grokify/go-wordpressxml
  [license-svg]: https://img.shields.io/badge/license-MIT-blue.svg
- [license-url]: https://github.com/grokify/go-wordpressxml/blob/master/LICENSE
+ [license-url]: https://github.com/grokify/go-wordpressxml/blob/main/LICENSE
 
 ## Overview
 
 The `go-wordpressxml` package provides a WordPress WXR (WordPress eXtended RSS) XML parser.
 
+## Features
+
+- Parse WordPress XML export files
+- Extract post metadata (authors, dates, categories, comments)
+- Convert WordPress exports to [Hugo](https://gohugo.io/) static site format
+- Export article metadata to CSV
+- Export articles to HTML
+
 ## Documentation
 
-Documentation is provided using godoc and available on [GoDoc.org](https://godoc.org/github.com/grokify/go-wordpressxml).
+Documentation is available on [pkg.go.dev](https://pkg.go.dev/github.com/grokify/go-wordpressxml).
 
 ## Installation
 
@@ -44,6 +52,8 @@ $ go get github.com/grokify/go-wordpressxml
 
 ## Usage
 
+### Parse WordPress XML and Export to CSV
+
 ```go
 import (
 	"github.com/grokify/go-wordpressxml"
@@ -51,11 +61,35 @@ import (
 
 func main() {
 	wp := wordpressxml.NewWordPressXML()
-	err := wp.ReadFile("myblog.wordpress.2016-08-13.xml")
+	err := wp.ReadFile("myblog.wordpress.xml")
 	if err != nil {
 		panic(err)
 	}
-	wp.WriteMetaCSV("articles.csv")
+	err = wp.WriteMetaCSV("articles.csv")
+	if err != nil {
+		panic(err)
+	}
+}
+```
+
+### Convert to Hugo Format
+
+```go
+import (
+	"github.com/grokify/go-wordpressxml"
+	"github.com/grokify/go-wordpressxml/hugo"
+)
+
+func main() {
+	wp := wordpressxml.NewWordPressXML()
+	err := wp.ReadFile("myblog.wordpress.xml")
+	if err != nil {
+		panic(err)
+	}
+
+	converter := hugo.WxrConverter{}
+	posts := converter.ConvertPosts(wp.Channel.Items)
+	// Use posts to generate Hugo content files
 }
 ```
 
